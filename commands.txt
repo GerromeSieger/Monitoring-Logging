@@ -1,0 +1,16 @@
+docker-compose up -d --force-recreate
+
+docker plugin install grafana/loki-docker-driver:latest --alias loki --grant-all-permissions
+
+sudo nano /etc/docker/daemon.json
+
+sudo systemctl restart docker
+
+
+## LogQL sample queries
+
+{job="varlogs"} 
+
+{job="varlogs"}  |= "docker"
+
+{container_name="uptime-kuma", host="juno"}
